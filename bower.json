@@ -1,0 +1,28 @@
+{
+  "name": "Creatures Race",
+  "version": "0.0.1",
+  "main": "index.html",
+  "description": "Best 2D platform game ever written with phaser framework",
+  "private": true,
+  "keywords": [
+    "game",
+    "2D",
+    "platform",
+    "phaser"
+  ],
+  "authors": [
+    "matiangul"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "vendors"
+  ],
+  "dependencies": {
+    "stampit": "~0.5.0"
+  }
+}
