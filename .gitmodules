@@ -1,0 +1,3 @@
+[submodule "app/vendors/phaser"]
+	path = app/vendors/phaser
+	url = https://github.com/photonstorm/phaser.git
