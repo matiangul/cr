@@ -6,27 +6,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>tmp</title>
+        <title>cr</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
-    </head>
-    <body>
-        <!--[if lt IE 10]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        <div class="hero-unit">
-          <h1>'Allo, 'Allo!</h1>
-          <p>You now have</p>
-          <ul>
-            <li>HTML5 Boilerplate</li>
-          </ul>
-        </div>
-
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
@@ -34,9 +20,68 @@
         <!-- endbower -->
         <script src="vendors/phaser/build/phaser.min.js"></script>
         <!-- endbuild -->
-
         <!-- build:js scripts/main.js -->
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
+    </head>
+    <body>
+        <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script type="text/javascript">
+
+        (function () {
+            var game = new Phaser.Game(655, 208, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+            var mummy, bot, map;
+
+            function preload() {
+                game.load.tilemap('mario', 'assets/maps/mario1.png', 'assets/maps/mario1.json', null, Phaser.Tilemap.JSON);
+                game.load.spritesheet('mummy', 'assets/sprites/metalslug_mummy37x45.png', 37, 45, 18);
+                game.load.atlasJSONHash('bot', 'assets/sprites/running_bot.png', 'assets/sprites/running_bot.json');
+            }
+
+            function create() {
+                game.stage.backgroundColor = '#787878';
+                map = game.add.tilemap(0, 0, 'mario');
+                map.setCollisionRange(80, 97, true, true, true, true);
+                map.setCollisionRange(15, 17, true, true, false, true);
+                mummy = game.add.sprite(100, 55, 'mummy');
+                mummy.scale = new Phaser.Point(2, 2);
+                bot = game.add.sprite(250, 50, 'mummy');
+                bot.animations.add('run');
+                mummy.animations.add('walk');
+                bot.animations.play('run', 30, true);
+                mummy.animations.play('walk', 50, true);
+
+                mummy.body.bounce.y = 0.4;
+                mummy.body.collideWorldBounds = true;
+
+                bot.body.bounce.y = 0.4;
+                bot.body.collideWorldBounds = true;
+
+                game.camera.follow(bot);
+
+            }
+            function update() {
+                map.collide(mummy);
+                map.collide(bot);
+
+                //mummy.body.velocity.x = 0;
+                mummy.body.acceleration.y = 500;
+
+                //bot.body.velocity.x = 0;
+                bot.body.acceleration.y = 500;
+
+                bot.body.velocity.x += 0.1;
+                mummy.body.velocity.x += 0.2;
+                if (mummy.body.x >= 220) {
+                    bot.body.velocity.x = 0;
+                    mummy.body.velocity.x = 0;
+                }
+            }
+        })();
+
+        </script>
 </body>
 </html>
