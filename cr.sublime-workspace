@@ -1,0 +1,519 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ja",
+				"jasmineEnv	(?)"
+			],
+			[
+				"ne",
+				"getNeighbours"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"img",
+				"img	Tag"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"del",
+				"deltaY"
+			],
+			[
+				"if",
+				"if	if"
+			],
+			[
+				"fun",
+				"fun	Function"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"cond",
+				"conditionHeight"
+			],
+			[
+				"con",
+				"conditionWidth"
+			],
+			[
+				"ins",
+				"instructionHeight"
+			],
+			[
+				"actio",
+				"actionSprite"
+			],
+			[
+				"en",
+				"enclose"
+			],
+			[
+				"ba",
+				"baseObject"
+			],
+			[
+				"get",
+				"getPrivateId"
+			],
+			[
+				"day",
+				"dayInYear"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/User/builds/gpp.sublime-build",
+	"command_palette":
+	{
+		"height": 81.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				"sssa",
+				"Set Syntax: Sass"
+			],
+			[
+				"tog mini",
+				"View: Toggle Minimap"
+			],
+			[
+				"sshtml",
+				"Set Syntax: HTML"
+			],
+			[
+				"htm",
+				"Set Syntax: HTML"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"ssc",
+				"Set Syntax: C++"
+			],
+			[
+				"gist",
+				"Gist: Update File"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"gitstatu",
+				"Git: Status"
+			],
+			[
+				"ssc++",
+				"Set Syntax: C++"
+			],
+			[
+				"proje",
+				"Project: Save As"
+			],
+			[
+				"ssjs",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"opent",
+				"File: Open In Browser - Testing Server"
+			],
+			[
+				"open",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"edit",
+				"Project: Edit"
+			],
+			[
+				"proedi",
+				"Project: Edit"
+			],
+			[
+				"proj",
+				"Project: Save As"
+			],
+			[
+				"fetch",
+				"Fetch: Package"
+			],
+			[
+				"sscss",
+				"Set Syntax: CSS"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Autoprefix CSS"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 146.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Software/wamp/www/graozycie/test/bower_components/jasmine-matchers.js",
+		"/C/Software/wamp/www/graozycie/test/main.js",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/TernJS.sublime-settings",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/TernJS/TernJS.sublime-settings",
+		"/C/Software/wamp/www/graozycie/test/index.html",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Software/wamp/www/graozycie/test/spec/test.js",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Software/wamp/www/graozycie/main.js",
+		"/C/Software/wamp/www/komoda/app/bower_components/lyte/lyte.jquery.js",
+		"/C/Software/wamp/www/komoda/app/scripts/jquery.fitvids.js",
+		"/C/Software/wamp/www/komoda/app/scripts/lyte_video.jQuery.min.js",
+		"/C/Software/wamp/www/komoda/app/scripts/lyte_video.jQuery.js",
+		"/C/Software/wamp/www/komoda/app/styles/main.scss",
+		"/C/Software/wamp/www/komoda/bower.json",
+		"/C/Software/wamp/www/komoda/Gruntfile.js",
+		"/C/Software/wamp/www/webglFundamentals/app/index.html",
+		"/C/Software/wamp/www/webglFundamentals/app/styles/main.css",
+		"/C/Software/wamp/www/webglFundamentals/app/scripts/blokowy.js",
+		"/C/Software/wamp/www/webglFundamentals/app/blokowy.js",
+		"/C/Software/wamp/www/webglFundamentals/app/scripts/main.js",
+		"/C/Software/wamp/www/webgl/glUtils.js",
+		"/C/Software/wamp/www/webgl/index.html",
+		"/C/Software/wamp/www/webgl/main.js",
+		"/C/Software/wamp/www/webgl/sylvester.js",
+		"/C/Software/wamp/www/cr/app/assets/maps/mario1.json",
+		"/C/Software/wamp/www/cr/app/.htaccess_prod",
+		"/C/Software/wamp/www/cr/app/assets/maps/ActraiserMapBloodpoolAct1.png",
+		"/C/Software/wamp/www/cr/app/.htaccess2",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/tilemaps/mapcollide.php",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/assets/maps/mario1.json",
+		"/C/Software/wamp/www/cr/app/scripts/main.js",
+		"/C/Software/wamp/www/cr/app/styles/main.css",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/camera/basic follow.php",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/texture atlas.php",
+		"/C/Software/wamp/www/cr/app/assets/sprites/running_bot.json",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/sprite sheet.php",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/head.php",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/index.php",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/foot.php",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/js.php",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/build/phaser.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/build/build.php",
+		"/C/Software/wamp/www/cr/build.sh",
+		"/C/Software/wamp/www/cr/app/index.html",
+		"/C/Software/wamp/www/cr/update.sh",
+		"/C/cygdrive/c/Software/wamp/www/nadigong-wp/index.php",
+		"/C/cygdrive/c/Software/Cygwin/home/Mateusz/a",
+		"/C/home/Mateusz/.bashrc",
+		"/C/cygdrive/c/Software/Cygwin/home/Mateusz/.bashrc",
+		"/G/C++/oesk.cpp",
+		"/F/Documents/Polibuda/Semestr_3/Optymalizacja Kombinatoryczna/Projekt/OK/main.cpp",
+		"/F/Documents/Polibuda/Semestr_3/Optymalizacja Kombinatoryczna/Projekt/OK/debug.cpp",
+		"/G/C++/main.cpp",
+		"/G/C++/1000.cpp",
+		"/G/C++/1002.dat",
+		"/G/C++/1002.cpp",
+		"/C/Software/wamp/www/yatm/structure.md",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/builds/gpp.sublime-build",
+		"/G/C++/1001.dat",
+		"/G/C++/1001.cpp",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/Gist.sublime-settings",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/AdvancedNewFile/Default (Windows).sublime-keymap",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/AdvancedNewFile/AdvancedNewFile.sublime-settings",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/plugins/BuildOnSave.py",
+		"/G/C++/cpp.sublime-project",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SublimeClang/SublimeClang.sublime-settings",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SublimeLinter/README.md",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SublimeCodeIntel/SublimeCodeIntel.sublime-settings",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/G/C++/index.php",
+		"/C/Software/wamp/www/phasertest/index.html",
+		"/C/Software/wamp/www/phasertest/phasertest.sublime-project",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Settings/SideBarEnhancements.json",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/Browser Refresh/Default (Windows).sublime-keymap",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/Gist/Gist.sublime-settings",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SideBarEnhancements/readme.md",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/Side Bar.sublime-settings",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/C/Software/wamp/www/phasertest/phasertest.sublime-workspace",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SideBarEnhancements/messages/11.13.2012.1305.0.txt",
+		"/C/Software/wamp/www/phasertest/pha/test.css",
+		"/C/Software/wamp/www/phasertest/phaser-master/test.css",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/AdvancedNewFile/README.md",
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/Fetch.sublime-settings"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"hint",
+			"live",
+			"console",
+			"Prev(",
+			"prev(",
+			"slide",
+			".prev(",
+			"next(",
+			"Next(",
+			"next(",
+			"Instruction",
+			"Circle",
+			"circle",
+			"Circle",
+			"circle",
+			"Circle",
+			"circle",
+			"Circle",
+			"circle",
+			"controlBounds",
+			"15",
+			"80",
+			"map",
+			"CR.game",
+			"game",
+			"actionSprite",
+			"baseObject",
+			"cr",
+			"setCollision(",
+			"(",
+			"setCollision",
+			"tilemap",
+			"add:",
+			"add.",
+			"addToFileList",
+			"tilemap",
+			"boot(",
+			"setBackgroundColor(",
+			"000000",
+			"ffff33",
+			"Phaser.Physics.Arcade.Body",
+			"physics",
+			"body.",
+			"jump",
+			"new PIXI.POInt(",
+			"getLocalPosition",
+			"position",
+			"Sprite",
+			"move(",
+			"Phaser.Point",
+			"false,",
+			"reverse",
+			"flip",
+			"Phaser.Sprite",
+			"sprite",
+			"Phaser.StateManager",
+			"Phaser.Game",
+			"diffclock",
+			"CurrentTimeM1",
+			"start",
+			"time",
+			"260",
+			"i",
+			"dayInYear",
+			"zac",
+			",  ",
+			"\",\n",
+			",",
+			"indent",
+			"tab",
+			"tzolkinNameOfTheYear",
+			"ctrl+alt+n",
+			"url"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"true,",
+			",",
+			"ctrl+alt+m"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.clang":
+	{
+		"height": 118.0
+	},
+	"output.exec":
+	{
+		"height": 168.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"main.js",
+				"app/scripts/main.js"
+			],
+			[
+				"main.css",
+				"app/styles/main.css"
+			],
+			[
+				"mario",
+				"app/assets/maps/mario1.json"
+			],
+			[
+				"mario1.json",
+				"app/assets/maps/mario1.json"
+			],
+			[
+				"phaser",
+				"app/vendors/phaser/build/phaser.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 253.0,
+	"status_bar_visible": true
+}
