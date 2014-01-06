@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="100" height="50" tilewidth="16" tileheight="16">
- <tileset firstgid="1" name="creature" tilewidth="16" tileheight="16">
-  <image source="G:/Dropbox/Politechnika/Creatures Race/creatureMap.png" width="112" height="32"/>
- </tileset>
+ <tileset firstgid="1" source="creature.tsx"/>
  <layer name="Tile Layer 1" width="100" height="50">
   <data encoding="base64" compression="zlib">
    eJztmUkOhDAMBGH29f/fnVyQODCEhDheqENdkFDabtsxYhyGYQQAAJhxSpwTl8TVgJ6j80y8Eu/Ex4AeiAl9b4uWfY+3togw06kpW0SoKQAAiI3F3cGipl5xWNwdLGo6chwQiyjzLkpO9syJqF56nZ1edQMAHJGod6jXHHGHxs4R/WYLL7VE3cjkp/Y9L3WjRW1+yCsAAEREYo/T3g21z9+DxL6hvcPUnJ/z0LPHHsl5yH+zOGjPC4jJLUOLMx4zJJ5Lxd46D6W5mpg0tIrbqh9Lsf+jlyc5Hb3qQoMSP3KetNontmiw0Mc15LSX+rHmSat9okaTl/7ZG5vG7GqhTat/JOpf2xNJzdL9I619ay3W6l+6c3pprukfzfrvUXNLd452LN8VtLVJ+2Gx5+8raGvDD59+lHzn5/gBAxgoFQ==
