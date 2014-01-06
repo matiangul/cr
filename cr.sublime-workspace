@@ -4,6 +4,58 @@
 		"selected_items":
 		[
 			[
+				"crea",
+				"creature"
+			],
+			[
+				"ru",
+				"runForest"
+			],
+			[
+				"f",
+				"factories"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"acto",
+				"actorName"
+			],
+			[
+				"Action",
+				"ActionSprite"
+			],
+			[
+				"sp",
+				"sprite"
+			],
+			[
+				"get",
+				"getActor"
+			],
+			[
+				"thr",
+				"throwIfNull"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"th",
+				"throwIfNull"
+			],
+			[
+				"p",
+				"property"
+			],
+			[
+				"script",
+				"script	Tag"
+			],
+			[
 				"ja",
 				"jasmineEnv	(?)"
 			],
@@ -30,10 +82,6 @@
 			[
 				"if",
 				"if	if"
-			],
-			[
-				"fun",
-				"fun	Function"
 			],
 			[
 				"op",
@@ -64,10 +112,6 @@
 				"baseObject"
 			],
 			[
-				"get",
-				"getPrivateId"
-			],
-			[
 				"day",
 				"dayInYear"
 			]
@@ -75,13 +119,69 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/scripts/main.js",
+			"settings":
+			{
+				"buffer_size": 2334,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Software/wamp/www/phaser/examples/tilemaps/mapcollide.js",
+			"settings":
+			{
+				"buffer_size": 1776,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Software/wamp/www/phaser/examples/tilemaps/mario.js",
+			"settings":
+			{
+				"buffer_size": 1106,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Software/wamp/www/first-phaser-game/part9.html",
+			"settings":
+			{
+				"buffer_size": 3846,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Software/wamp/www/phaser/resources/Project Templates/Basic/index.html",
+			"settings":
+			{
+				"buffer_size": 1127,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/index.html",
+			"settings":
+			{
+				"buffer_size": 1524,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/User/builds/gpp.sublime-build",
 	"command_palette":
 	{
-		"height": 81.0,
+		"height": 150.0,
 		"selected_items":
 		[
+			[
+				"sshtml",
+				"Set Syntax: HTML"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -97,10 +197,6 @@
 			[
 				"tog mini",
 				"View: Toggle Minimap"
-			],
-			[
-				"sshtml",
-				"Set Syntax: HTML"
 			],
 			[
 				"htm",
@@ -155,10 +251,6 @@
 				"Set Syntax: HTML"
 			],
 			[
-				"remo",
-				"Package Control: Remove Package"
-			],
-			[
 				"remove",
 				"Package Control: Remove Package"
 			],
@@ -211,7 +303,7 @@
 				"Set Syntax: CSS"
 			]
 		],
-		"width": 416.0
+		"width": 400.0
 	},
 	"console":
 	{
@@ -228,6 +320,34 @@
 	},
 	"file_history":
 	[
+		"/C/Software/wamp/www/cr/update.sh",
+		"/C/Software/wamp/www/cr/.gitmodules",
+		"/C/Software/wamp/www/cr/app/styles/main.css",
+		"/C/Software/wamp/www/cr/app/scripts/namespaces.js",
+		"/C/Software/wamp/www/cr/app/scripts/factories.js",
+		"/C/Software/wamp/www/cr/.editorconfig",
+		"/C/Software/wamp/www/cr/.gitattributes",
+		"/C/Software/wamp/www/cr/.gitignore",
+		"/C/Software/wamp/www/cr/.jshintrc",
+		"/C/Software/wamp/www/cr/bower.json",
+		"/C/Software/wamp/www/cr/build.sh",
+		"/C/Software/wamp/www/cr/cr.sublime-project",
+		"/C/Software/wamp/www/cr/.bowerrc",
+		"/C/Software/wamp/www/cr/cr.sublime-workspace",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/sprites/spritesheet.php",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/build/phaser.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/head.php",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/collision/offset bounding box.php",
+		"/C/Software/wamp/www/cr/app/index.html",
+		"/C/Software/wamp/www/meetphp-symfony2/index.html",
+		"/C/Software/wamp/www/meetphp-symfony2/styles/styles.css",
+		"/C/Software/wamp/www/meetphp-symfony2/scripts/slides.js",
+		"/F/Web/meetphp-symfony2/README.md",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/sprites/sprite3.php",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/build/phaser.min.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/js.php",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/collision/bounding box.php",
+		"/C/Software/wamp/www/cr/Gruntfile.js",
 		"/C/Software/wamp/www/graozycie/test/bower_components/jasmine-matchers.js",
 		"/C/Software/wamp/www/graozycie/test/main.js",
 		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/TernJS.sublime-settings",
@@ -261,20 +381,13 @@
 		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/assets/maps/mario1.json",
 		"/C/Software/wamp/www/cr/app/scripts/main.js",
-		"/C/Software/wamp/www/cr/app/styles/main.css",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/camera/basic follow.php",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/texture atlas.php",
 		"/C/Software/wamp/www/cr/app/assets/sprites/running_bot.json",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/sprite sheet.php",
-		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/head.php",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/index.php",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/foot.php",
-		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/js.php",
-		"/C/Software/wamp/www/cr/app/vendors/phaser/build/phaser.js",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/build/build.php",
-		"/C/Software/wamp/www/cr/build.sh",
-		"/C/Software/wamp/www/cr/app/index.html",
-		"/C/Software/wamp/www/cr/update.sh",
 		"/C/cygdrive/c/Software/wamp/www/nadigong-wp/index.php",
 		"/C/cygdrive/c/Software/Cygwin/home/Mateusz/a",
 		"/C/home/Mateusz/.bashrc",
@@ -332,6 +445,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"google-logo-small",
+			"small",
+			".bounce",
+			"bounce:",
+			".Tween",
+			"create:",
+			"tweens:",
+			"tweens",
+			"tween:",
+			"tween(",
+			"jshint",
+			"lint",
+			"CR.obj.game",
+			"console.log",
+			"CR.game",
 			"hint",
 			"live",
 			"console",
@@ -425,8 +553,176 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/scripts/main.js",
+					"settings":
+					{
+						"buffer_size": 2334,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								427,
+								427
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 28.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Software/wamp/www/phaser/examples/tilemaps/mapcollide.js",
+					"settings":
+					{
+						"buffer_size": 1776,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								971,
+								971
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 643.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Software/wamp/www/phaser/examples/tilemaps/mario.js",
+					"settings":
+					{
+						"buffer_size": 1106,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								792,
+								792
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 160.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Software/wamp/www/first-phaser-game/part9.html",
+					"settings":
+					{
+						"buffer_size": 3846,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1736,
+								1754
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1571.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Software/wamp/www/phaser/resources/Project Templates/Basic/index.html",
+					"settings":
+					{
+						"buffer_size": 1127,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								226,
+								226
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/index.html",
+					"settings":
+					{
+						"buffer_size": 1524,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -514,6 +810,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 253.0,
+	"side_bar_width": 221.0,
 	"status_bar_visible": true
 }
