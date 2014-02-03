@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"kill",
+				"killCallback"
+			],
+			[
+				"ea",
+				"eatPlayer"
+			],
+			[
+				"catch",
+				"catchCreature"
+			],
+			[
+				"p",
+				"physics"
+			],
+			[
+				"un",
+				"undefined"
+			],
+			[
+				"con",
+				"continue"
+			],
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"pl",
+				"player"
+			],
+			[
+				"run",
+				"runForest"
+			],
+			[
+				"play",
+				"player"
+			],
+			[
 				"crea",
 				"creature"
 			],
@@ -48,10 +88,6 @@
 				"throwIfNull"
 			],
 			[
-				"p",
-				"property"
-			],
-			[
 				"script",
 				"script	Tag"
 			],
@@ -92,10 +128,6 @@
 				"conditionHeight"
 			],
 			[
-				"con",
-				"conditionWidth"
-			],
-			[
 				"ins",
 				"instructionHeight"
 			],
@@ -120,51 +152,43 @@
 	"buffers":
 	[
 		{
-			"file": "app/scripts/main.js",
-			"settings":
-			{
-				"buffer_size": 2334,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Software/wamp/www/phaser/examples/tilemaps/mapcollide.js",
-			"settings":
-			{
-				"buffer_size": 1776,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/Software/wamp/www/phaser/examples/tilemaps/mario.js",
-			"settings":
-			{
-				"buffer_size": 1106,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/Software/wamp/www/first-phaser-game/part9.html",
-			"settings":
-			{
-				"buffer_size": 3846,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Software/wamp/www/phaser/resources/Project Templates/Basic/index.html",
-			"settings":
-			{
-				"buffer_size": 1127,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "app/index.html",
 			"settings":
 			{
-				"buffer_size": 1524,
+				"buffer_size": 1474,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/main.js",
+			"settings":
+			{
+				"buffer_size": 24830,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/vendors/phaser/dist/phaser.js",
+			"settings":
+			{
+				"buffer_size": 1311653,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/vendors/phaser/build/phaser.d.ts",
+			"settings":
+			{
+				"buffer_size": 75171,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/sprites/creature.xml",
+			"settings":
+			{
+				"buffer_size": 1735,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -320,6 +344,52 @@
 	},
 	"file_history":
 	[
+		"/C/Software/wamp/www/cr/app/assets/sprites/player.xml",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/multiple anims.js",
+		"/C/Software/wamp/www/cr/app/assets/sprites/creature.xml",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/assets/sprites/seacreatures_json.json",
+		"/C/Software/wamp/www/cr/app/assets/sprites/player.json",
+		"/C/Software/wamp/www/cr/app/assets/sprites/creature.json",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/assets/sprites/seacreatures.xml",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/build/phaser.d.ts",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/starling atlas.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/sprite sheet.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/assets/sprites/running_bot.json",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/change texture on click.js",
+		"/C/Windows/System32/Drivers/etc/hosts",
+		"/C/Software/wamp/www/novum/support.txt",
+		"/C/Software/wamp/www/cr/dist/index.html",
+		"/C/Software/wamp/www/cr/dist/scripts/b12903f4.script.js",
+		"/C/Software/wamp/www/cr/Gruntfile.js",
+		"/C/Software/wamp/www/cr/app/scripts/quo.js",
+		"/C/Software/wamp/www/cr/dist/scripts/8266c86a.vendors.js",
+		"/C/Software/wamp/www/cr/dist/scripts/fd12a651.vendors.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/groups/bring a group to top.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/input/key.js",
+		"/C/Software/wamp/www/cr/app/assets/maps/temp.json",
+		"/C/Software/wamp/www/cr/app/assets/maps/creature.json",
+		"/C/Software/wamp/www/cr/app/assets/maps/map.json",
+		"/C/Software/wamp/www/cr/app/assets/maps/temp2.json",
+		"/C/Software/wamp/www/cr/app/assets/maps/creature2.json",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/tilemaps/sci fly.js",
+		"/C/Software/wamp/www/cr/app/assets/maps/cybernoid.json",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/build/phaser.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/Gruntfile.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/build/build.php",
+		"/C/Software/wamp/www/cr-ts/app/Game.ts",
+		"/C/Software/wamp/www/cr-ts/app/app.ts",
+		"/C/Software/wamp/www/phaser-type-script/phaser-type-script/app.ts",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/games/starstruck.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/src/tilemap/Tilemap.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/src/Phaser.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/index.html",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/sideview.html",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/assets/tiles/sci-fi-tiles.png",
+		"/C/Software/wamp/www/cr/app/index.html",
+		"/C/Software/wamp/www/phaser/resources/Project Templates/Basic/index.html",
+		"/C/Software/wamp/www/first-phaser-game/part9.html",
+		"/C/Software/wamp/www/phaser/examples/tilemaps/mario.js",
+		"/C/Software/wamp/www/phaser/examples/tilemaps/mapcollide.js",
 		"/C/Software/wamp/www/cr/update.sh",
 		"/C/Software/wamp/www/cr/.gitmodules",
 		"/C/Software/wamp/www/cr/app/styles/main.css",
@@ -335,10 +405,8 @@
 		"/C/Software/wamp/www/cr/.bowerrc",
 		"/C/Software/wamp/www/cr/cr.sublime-workspace",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/sprites/spritesheet.php",
-		"/C/Software/wamp/www/cr/app/vendors/phaser/build/phaser.js",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/head.php",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/collision/offset bounding box.php",
-		"/C/Software/wamp/www/cr/app/index.html",
 		"/C/Software/wamp/www/meetphp-symfony2/index.html",
 		"/C/Software/wamp/www/meetphp-symfony2/styles/styles.css",
 		"/C/Software/wamp/www/meetphp-symfony2/scripts/slides.js",
@@ -347,7 +415,6 @@
 		"/C/Software/wamp/www/cr/app/vendors/phaser/build/phaser.min.js",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/js.php",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/collision/bounding box.php",
-		"/C/Software/wamp/www/cr/Gruntfile.js",
 		"/C/Software/wamp/www/graozycie/test/bower_components/jasmine-matchers.js",
 		"/C/Software/wamp/www/graozycie/test/main.js",
 		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/TernJS.sublime-settings",
@@ -387,7 +454,6 @@
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/sprite sheet.php",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/index.php",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/foot.php",
-		"/C/Software/wamp/www/cr/app/vendors/phaser/build/build.php",
 		"/C/cygdrive/c/Software/wamp/www/nadigong-wp/index.php",
 		"/C/cygdrive/c/Software/Cygwin/home/Mateusz/a",
 		"/C/home/Mateusz/.bashrc",
@@ -405,29 +471,7 @@
 		"/G/C++/1001.cpp",
 		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/Gist.sublime-settings",
 		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/AdvancedNewFile/Default (Windows).sublime-keymap",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/AdvancedNewFile/AdvancedNewFile.sublime-settings",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/plugins/BuildOnSave.py",
-		"/G/C++/cpp.sublime-project",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SublimeClang/SublimeClang.sublime-settings",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SublimeLinter/README.md",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SublimeCodeIntel/SublimeCodeIntel.sublime-settings",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SublimeLinter/SublimeLinter.sublime-settings",
-		"/G/C++/index.php",
-		"/C/Software/wamp/www/phasertest/index.html",
-		"/C/Software/wamp/www/phasertest/phasertest.sublime-project",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Settings/SideBarEnhancements.json",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/Browser Refresh/Default (Windows).sublime-keymap",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/Gist/Gist.sublime-settings",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SideBarEnhancements/readme.md",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/Side Bar.sublime-settings",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SideBarEnhancements/Side Bar.sublime-settings",
-		"/C/Software/wamp/www/phasertest/phasertest.sublime-workspace",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/SideBarEnhancements/messages/11.13.2012.1305.0.txt",
-		"/C/Software/wamp/www/phasertest/pha/test.css",
-		"/C/Software/wamp/www/phasertest/phaser-master/test.css",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/AdvancedNewFile/README.md",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/Fetch.sublime-settings"
+		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/AdvancedNewFile/AdvancedNewFile.sublime-settings"
 	],
 	"find":
 	{
@@ -438,6 +482,12 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"C:\\Software\\wamp\\www\\cr\\app\\vendors\\phaser\\examples",
+			"C:\\Software\\wamp\\www\\cr\\app\\vendors\\phaser\\dist",
+			"C:\\Software\\wamp\\www\\cr\\app\\vendors\\phaser",
+			"C:\\Software\\wamp\\www\\cr\\app\\vendors\\phaser\\examples",
+			"C:\\Software\\wamp\\www\\cr\\app\\vendors\\phaser\\build",
+			"C:\\Software\\wamp\\www\\cr\\app\\vendors\\phaser"
 		]
 	},
 	"find_state":
@@ -445,94 +495,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"google-logo-small",
-			"small",
-			".bounce",
-			"bounce:",
-			".Tween",
-			"create:",
-			"tweens:",
-			"tweens",
-			"tween:",
-			"tween(",
-			"jshint",
-			"lint",
-			"CR.obj.game",
+			"eat",
 			"console.log",
-			"CR.game",
-			"hint",
-			"live",
+			"checkSink",
+			"collisions",
+			"CR.collisions",
 			"console",
-			"Prev(",
-			"prev(",
-			"slide",
-			".prev(",
-			"next(",
-			"Next(",
-			"next(",
-			"Instruction",
-			"Circle",
-			"circle",
-			"Circle",
-			"circle",
-			"Circle",
-			"circle",
-			"Circle",
-			"circle",
-			"controlBounds",
-			"15",
-			"80",
-			"map",
-			"CR.game",
-			"game",
-			"actionSprite",
-			"baseObject",
-			"cr",
-			"setCollision(",
-			"(",
-			"setCollision",
-			"tilemap",
-			"add:",
-			"add.",
-			"addToFileList",
-			"tilemap",
-			"boot(",
-			"setBackgroundColor(",
-			"000000",
-			"ffff33",
-			"Phaser.Physics.Arcade.Body",
-			"physics",
-			"body.",
-			"jump",
-			"new PIXI.POInt(",
-			"getLocalPosition",
-			"position",
-			"Sprite",
-			"move(",
-			"Phaser.Point",
-			"false,",
-			"reverse",
-			"flip",
-			"Phaser.Sprite",
-			"sprite",
-			"Phaser.StateManager",
+			"140",
+			"90",
+			"30",
+			"= true",
+			"= false",
+			"debug = true",
+			"gravity",
+			"Arcade.Body",
+			"face",
+			"faceBottom",
+			"body.acceleration.y",
+			"angularAcceleration",
+			"angle",
+			"angularAcceleration",
+			"angularA",
+			"angular",
+			"angularAc",
+			"angularAcc",
+			"getTiles",
+			"creature.js",
+			"creature.",
+			"debug",
+			"wall",
+			"CR.logic.wall",
+			"PIXI",
+			"PIXI ",
+			"PIXI =",
+			"PIXI",
+			"play",
+			"onComplete",
+			"AnimationManager",
+			"class Game",
+			"Game",
+			"animation",
 			"Phaser.Game",
-			"diffclock",
-			"CurrentTimeM1",
-			"start",
-			"time",
-			"260",
-			"i",
-			"dayInYear",
-			"zac",
-			",  ",
-			"\",\n",
-			",",
-			"indent",
-			"tab",
-			"tzolkinNameOfTheYear",
-			"ctrl+alt+n",
-			"url"
+			"killOnComplete",
+			"player",
+			"creature",
+			"c",
+			"p",
+			"getFigureBySprite",
+			"eatPlayer",
+			"play:",
+			"eatPlayer",
+			"collideSpriteVsSprite",
+			"collide",
+			"eatPlayer",
+			"playerSprite",
+			"spinach",
+			"scale.",
+			"getFigureBySprite",
+			"grabFant",
+			"collectFant",
+			"setFrame",
+			"resetFrame",
+			"Arcade.Body",
+			"class Body",
+			"currentFrame =",
+			"currentFrame",
+			"currentFrame :",
+			"resetFrame",
+			"reset",
+			"resetFrame",
+			"animation",
+			"stop():",
+			"stop:",
+			"immovable",
+			"maxY",
+			"maxVelocity",
+			"maxVelocity;",
+			"maxVelocity:",
+			"maxVelocity :",
+			"maxVelo",
+			"getTiles",
+			"55",
+			"quadtree",
+			"QuadTree",
+			"tile",
+			".Debug",
+			"Tile",
+			"CR.jump",
+			"touching",
+			"separateTile",
+			"collide",
+			"separateTiles",
+			"collideSpriteVsTilemapLayer",
+			"overlap",
+			"Phaser.Physics.",
+			"Phaser.Physics",
+			"Phaser.Physics.PhysicsManager",
+			"PhysicsManager",
+			"physics",
+			"touching",
+			"this.game",
+			"run",
+			"CR.player",
+			"CR.creature",
+			"80",
+			".stop(",
+			"id",
+			"getTile",
+			"collide",
+			"checkWorldBounds",
+			"collideWorldBounds",
+			"collide",
+			"acceleration",
+			"add(",
+			"jump",
+			"stop:",
+			"spy",
+			"forest",
+			"stop: ",
+			"setFrame = ",
+			"Sprite",
+			"200",
+			"134",
+			"bounce",
+			"y",
+			"frameY",
+			"numeric",
+			"Sprite",
+			"sprite"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -540,6 +630,23 @@
 		"regex": false,
 		"replace_history":
 		[
+			"CR.player",
+			"CR.creature",
+			"creature",
+			"player",
+			"bomb",
+			"granade",
+			"CR.game",
+			"CR.player.sprite",
+			"CR.creature.sprite",
+			"Cr.creature.sprite",
+			"40",
+			"key",
+			"creature",
+			"player",
+			"sprite.body.screenY",
+			"sprite.body.screenX",
+			"game",
 			"true,",
 			",",
 			"ctrl+alt+m"
@@ -553,107 +660,23 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/scripts/main.js",
+					"file": "app/index.html",
 					"settings":
 					{
-						"buffer_size": 2334,
+						"buffer_size": 1474,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								427,
-								427
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 28.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/Software/wamp/www/phaser/examples/tilemaps/mapcollide.js",
-					"settings":
-					{
-						"buffer_size": 1776,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								971,
-								971
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 643.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/C/Software/wamp/www/phaser/examples/tilemaps/mario.js",
-					"settings":
-					{
-						"buffer_size": 1106,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								792,
-								792
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 160.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/C/Software/wamp/www/first-phaser-game/part9.html",
-					"settings":
-					{
-						"buffer_size": 3846,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1736,
-								1754
+								850,
+								850
 							]
 						],
 						"settings":
@@ -661,33 +684,6 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1571.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/C/Software/wamp/www/phaser/resources/Project Templates/Basic/index.html",
-					"settings":
-					{
-						"buffer_size": 1127,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								226,
-								226
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -696,25 +692,109 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "app/index.html",
+					"buffer": 1,
+					"file": "app/scripts/main.js",
 					"settings":
 					{
-						"buffer_size": 1524,
+						"buffer_size": 24830,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								20136,
+								20136
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 9362.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/vendors/phaser/dist/phaser.js",
+					"settings":
+					{
+						"buffer_size": 1311653,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								346050,
+								346071
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 226376.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/vendors/phaser/build/phaser.d.ts",
+					"settings":
+					{
+						"buffer_size": 75171,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								24829,
+								24829
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 12716.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/assets/sprites/creature.xml",
+					"settings":
+					{
+						"buffer_size": 1735,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								397,
+								397
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -806,10 +886,10 @@
 		],
 		"width": 0.0
 	},
-	"show_minimap": false,
+	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 221.0,
+	"side_bar_width": 286.0,
 	"status_bar_visible": true
 }

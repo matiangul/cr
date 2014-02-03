@@ -15,19 +15,19 @@
         <!-- endbuild -->
         <!-- build:js scripts/vendors.js -->
         <!-- bower:js -->
-        <!-- <script src="bower_components/stampit/dist/stampit.js"></script> -->
+        <script src="bower_components/quojs/quo.js"></script>
         <!-- endbower -->
         <script src="vendors/phaser/dist/phaser.js"></script>
         <!-- endbuild -->
-        <!-- build:js scripts/script.js -->
-        <!-- <script scr="scripts/namespaces.js"></script> -->
-        <!-- <script scr="scripts/factories.js"></script> -->
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
+        <style> body { margin: 0; background: #FFFFFF; } </style>
     </head>
     <body>
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <div id="game"></div>
+        <!-- build:js scripts/script.js -->
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
     </body>
 </html>

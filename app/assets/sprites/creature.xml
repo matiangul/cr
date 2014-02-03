@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<TextureAtlas imagePath="creature.png">
+  <!-- Created with Adobe Flash CS6 version 12.0.0.481 -->
+  <!-- http://www.adobe.com/products/flash.html -->
+  <SubTexture name="run00" frameX="0" frameY="0" frameWidth="134" frameHeight="200" x="0" y="0" width="134" height="200"/>
+  <SubTexture name="run01" frameX="0" frameY="0" frameWidth="134" frameHeight="200" x="134" y="0" width="134" height="200"/>
+  <SubTexture name="run02" frameX="0" frameY="0" frameWidth="134" frameHeight="200" x="270" y="0" width="132" height="200"/>
+  <SubTexture name="eat00" frameX="0" frameY="0" frameWidth="134" frameHeight="200" x="0" y="200" width="134" height="200"/>
+  <SubTexture name="eat01" frameX="0" frameY="0" frameWidth="134" frameHeight="200" x="134" y="200" width="134" height="200"/>
+  <SubTexture name="eat02" frameX="0" frameY="0" frameWidth="134" frameHeight="200" x="268" y="200" width="134" height="200"/>
+  <SubTexture name="granade00" frameX="0" frameY="0" frameWidth="134" frameHeight="200" x="0" y="400" width="134" height="200"/>
+  <SubTexture name="granade01" frameX="0" frameY="0" frameWidth="134" frameHeight="200" x="134" y="400" width="134" height="200"/>
+  <SubTexture name="thunder00" frameX="0" frameY="0" frameWidth="134" frameHeight="200" x="402" y="200" width="134" height="200"/>
+  <SubTexture name="thunder01" frameX="0" frameY="0" frameWidth="134" frameHeight="200" x="536" y="200" width="134" height="200"/>
+  <SubTexture name="tar00" frameX="0" frameY="0" frameWidth="134" frameHeight="200" x="402" y="0" width="134" height="200"/>
+  <SubTexture name="standing00" frameX="0" frameY="0" frameWidth="134" frameHeight="200" x="536" y="0" width="134" height="200"/>
+</TextureAtlas>

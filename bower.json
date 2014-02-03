@@ -23,6 +23,7 @@
     "vendors"
   ],
   "dependencies": {
-    "stampit": "~0.5.0"
+    "stampit": "~0.5.0",
+    "quojs": "~2.3.6"
   }
 }

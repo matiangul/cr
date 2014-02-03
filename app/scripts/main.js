@@ -1,3 +1,28 @@
+// attach the .compare method to Array's prototype to call it on any array
+Array.prototype.compare = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+
+    // compare lengths - can save a lot of time
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l=this.length; i < l; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!this[i].compare(array[i]))
+                return false;
+        }
+        else if (this[i] != array[i]) {
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;
+        }
+    }
+    return true;
+};
+
 Phaser.Tilemap.prototype.setCollisionByIndexAndFace = function (index, layer, recalculate, top, bottom, left, right) {
 
     if (typeof layer === 'undefined')
@@ -138,28 +163,435 @@ Phaser.Utils.Debug.prototype.renderSpriteBounds = function (sprite, color, fill)
 
 };
 
-var CR = {},
-    debug = false;
+function log(text, cleanup) {
+    if (debug) {
+        debugText += ((debugText==="") ? "" : " | ") + text;
+        if (cleanup === true) {
+            debugText = text;
+        }
+    }
+}
 
-CR.game = new Phaser.Game(655, 600, Phaser.CANVAS, '', { preload: preload, create: create, update: update, render: render });
+var CR = {},
+    debug = true,
+    debugText = '';
+
+CR.ActionHandler = function() {
+    this._stack = [];
+    this._clean = [];
+};
+
+CR.ActionHandler.prototype = {
+    addClean : function(action, args, context, time) {
+        if (typeof(context) === 'undefined') { var context = null; }
+        if (typeof(time) === 'undefined') { var time = 0; }
+        this._clean.push({ 'callback' : action, 'args' : args, 'context': context, 'time' : time });
+    },
+    add : function(action, args, context, time, append) {
+        if (typeof(context) === 'undefined') { var context = null; }
+        if (typeof(time) === 'undefined') { var time = 0; }
+        if (typeof(append) === 'undefined') { var append = false; }
+        args = args || [];
+        var breaker = {
+            'break' : false
+        };
+        args.push(breaker);
+        this._stack.unshift({ 'callback' : action, 'args' : args, 'context': context, 'append': append, 'time' : time, 'break' : breaker });
+    },
+    run : function() {
+        for (var i = 0; i < this._clean.length; i++) {
+            this._clean[i]['callback'].apply(this._clean[i]['context'], this._clean[i]['args']);
+        }
+        for (var i = 0; i < this._stack.length; i++) {
+            if (this._stack[i]['break']['break']) {
+                continue;
+            }
+            if (this._stack[i]['time'] === 0 || this._stack[i]['time'] > Date.now()) {
+                this._stack[i]['callback'].apply(this._stack[i]['context'], this._stack[i]['args']);
+                if (this._stack[i]['append'] === true) {
+                    continue;
+                }
+                break;
+            } else if (this._stack[i]['time'] === -1) {
+                this._stack[i]['callback'].apply(this._stack[i]['context'], this._stack[i]['args']);
+                this._stack.splice(i, 1);
+                break;
+            } else {
+                continue;
+            }
+        }
+    },
+    clean : function() {
+        for (var i = 0; i < this._stack.length; i++) {
+            if (this._stack[i]['time'] !== 0 && this._stack[i]['time'] < Date.now()) {
+                this._stack.splice(i, 1);
+                break;
+            } else if (this._stack[i]['break']['break']) {
+                this._stack.splice(i, 1);
+                break;
+            }
+        }   
+    }
+};
+
+CR.game = new Phaser.Game(1000, 600, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
+CR.ah = new CR.ActionHandler();
+CR.player = {
+    anim: [],
+    spinach: 0,
+    acceleration: 300
+};
+CR.creature = {
+    anim: [],
+    acceleration: 300
+};
+CR.collisions = [];
+CR.Figures = {
+    getFigureBySprite : function(sprite)
+    {
+        if (sprite.key === "player") {
+            return CR.player;
+        } else {
+            return CR.creature;
+        }
+    }
+};
+
+CR.logic = {
+    run: function (key, figure, speed, time, append)
+    {
+        CR.ah.add(function(figure, speed) {
+            console.log('run');
+            if (!figure.anim.compare(['run', 10, true])) {
+                figure.sprite.animations.stop(null, true);
+                figure.sprite.animations.play('run', 10, true);
+                figure.anim = ['run', 10, true];
+            }
+            figure.sprite.body.gravity.y = figure.acceleration;
+            figure.sprite.body.velocity.x = speed;
+            figure.sprite.body.immovable = false;
+            returnControll();
+        }, [figure, speed], undefined, time, append);
+    },
+    stop: function (key, figure, time, append)
+    {
+        // figure.sprite.granade.kill();
+        // figure.sprite.granade.revive();
+        CR.ah.add(function(figure) {
+            console.log('stop');
+            if (typeof figure === 'undefined') {
+                figure = CR.player;
+            }
+            //name, resetFrame
+            figure.sprite.animations.stop(null, true);
+            figure.sprite.body.velocity.x = 0;
+            figure.anim = ['stop', 0, true];
+        }, [figure], undefined, time, append);
+    },
+    speedup: function (key)
+    {
+        CR.ah.add(function() {
+            console.log('speed');
+            figure = CR.player;
+            if (!figure.sprite.body.touching.right){
+                if (!figure.anim.compare(['run', 40, true])) {
+                    figure.sprite.animations.stop('run', false);
+                    figure.sprite.animations.play('run', 40, true);
+                    figure.anim = ['run', 40, true];
+                }
+                figure.sprite.body.acceleration.x = 100;
+            }
+        }, undefined, undefined, Date.now() + 1500, false);
+    },
+    jump: function (key, figure, time, append)
+    {
+        CR.ah.add(function(figure) {
+            console.log('jump');
+            if (typeof figure === 'undefined') {
+                figure = CR.player;
+            }
+            var tiles = CR.layer.getTiles(CR.player.sprite.body.x, CR.player.sprite.body.y, CR.player.sprite.body.width, CR.game.height, true);
+            if (typeof(tiles[0]) !== 'undefined' && figure.sprite.body.bottom + 10 > tiles[0].y) {
+                figure.sprite.body.velocity.y = -200;
+            }
+        }, [figure], undefined, -1, true);
+    },
+    hitByGranade: function (granade)
+    {
+        CR.ah.add(function(granade) {
+            console.log('hit granade');
+            CR.game.physics.collide(granade, CR.layer);
+            if (!CR.creature.anim.compare(['granade', 10, true])) {
+                CR.creature.sprite.animations.stop(null, true);
+                CR.creature.sprite.animations.play('granade', 10, true);
+                CR.creature.anim = ['granade', 10, true];
+            }
+            CR.creature.sprite.body.acceleration.x = -100;
+        }, [granade], undefined, Date.now() + 1000, false);
+    },
+    granadeCreature: function (key)
+    {
+        var x = CR.player.sprite.body.right,//CR.player.sprite.body.right + CR.player.sprite.body.halfHeight,
+            y = CR.creature.sprite.body.right + 2 * CR.player.sprite.body.halfHeight,// - CR.creature.sprite.body.halfWidth,
+            z = x - y,
+            alfa = Phaser.Math.degToRad(45),
+            g = 300, V, Vy, Vx;
+
+        if (z > 0 && (!CR.player.sprite.body.blocked.right || CR.player.sprite.body.right  !== CR.game.world.width)) {
+            V = Math.sqrt(z * g / Math.sin(2 * alfa));
+            Vx = V * Math.cos(alfa);
+            Vy = V * Math.sin(alfa);
+
+            var granade = CR.game.add.sprite(CR.player.sprite.body.right, CR.player.sprite.body.bottom - CR.player.sprite.body.halfHeight - 40, 'granade');
+            granade.scale.setTo(0.5, 0.5);
+            granade.body.collideWorldBounds = true;
+            granade.body.bounce.y = 0.2;
+            granade.body.gravity.y = 300;
+            granade.body.velocity.x = -Vx;
+            granade.body.velocity.y = -Vy - ((CR.player.sprite.body.right - CR.creature.sprite.body.right < 100) ? 60 : 0);
+            CR.collisions.push([granade, CR.layer]);
+
+            CR.ah.add(function(granade, Vx, Vy, x, g) {
+                console.log('granade');
+                // CR.game.physics.collide(granade, CR.creature.sprite, CR.logic.boomCreature, null, this);
+                if (granade.body.blocked.down || granade.body.touching.down) {
+                    arguments[arguments.length-1]['break'] = true;
+                    granade.kill();
+                    if (granade.body.right - granade.body.halfWidth > CR.creature.sprite.body.x - CR.creature.sprite.body.width * 2
+                        && granade.body.right - granade.body.halfWidth < CR.creature.sprite.body.right + CR.creature.sprite.body.width * 2) {
+                        CR.logic.hitByGranade(granade);
+                    }
+                }
+            }, [granade, Vx, Vy, x, g], undefined, undefined, true);
+            // console.log(V, Vy, Vx);
+            // console.log(CR.creature.sprite.body.bottom, CR.creature.sprite.body.right - CR.creature.sprite.body.halfWidth);
+        }
+    },
+    bombCreature: function (key, creature, player)
+    {
+        log("bomb", true);
+
+        var thunder = CR.game.add.sprite(CR.creature.sprite.body.right - CR.creature.sprite.body.width , 0, 'thunder');
+        thunder.body.mass = 0.1;
+        thunder.body.gravity.y = 200;
+        CR.collisions.push([CR.creature.sprite, thunder, function() { CR.logic.thunder(thunder); }]);
+
+        CR.ah.add(function(thunder) {
+            console.log('bomb');
+            CR.game.camera.follow(CR.creature.sprite);
+
+            CR.creature.sprite.body.velocity.x = 0;
+            CR.creature.sprite.body.velocity.y = 0;
+            CR.creature.sprite.body.angularVelocity = 0;
+            CR.creature.sprite.body.gravity.y = 0;
+            CR.creature.sprite.body.immovable = true;
+            if (!CR.creature.anim.compare(['stop', 0, true])) {
+                CR.creature.sprite.animations.stop(null, true);
+                CR.creature.anim = ['stop', 0, true];
+            }           
+
+            removeControll();
+            CR.player.sprite.body.velocity.x = 0;
+            CR.player.sprite.body.velocity.y = 0;
+            CR.player.sprite.body.angularVelocity = 0;
+            CR.player.sprite.body.gravity.y = 0;
+            CR.player.sprite.body.immovable = true;
+            if (!CR.player.anim.compare(['stop', 0, true])) {
+                CR.player.sprite.animations.stop(null, true);
+                CR.player.anim = ['stop', 0, true];
+            }
+
+            if (!thunder.visible) {
+                arguments[1]['break'] = true;
+                CR.game.camera.follow(CR.player.sprite);
+            }
+        }, [thunder], undefined, undefined, false);
+    },
+    thunder: function (thunder) {
+         returnControll();
+         CR.ah.add(function(thunder) {
+            console.log('thunder');
+            thunder.kill();
+            if (!CR.creature.anim.compare(['thunder', 10, true])) {
+                CR.creature.sprite.animations.stop(null, true);
+                CR.creature.sprite.animations.play('thunder', 10, true);
+                CR.creature.anim = ['thunder', 10, true];
+            }
+        }, [thunder], undefined, Date.now() + 1000, false);
+        //animate creature for 1 second
+    },
+    eatPlayer: function (sprite1, sprite2, time)
+    {
+        CR.ah.add(function() {
+            console.log('eat');
+            CR.creature.sprite.body.velocity.x = 0;
+            CR.creature.sprite.body.velocity.y = 0;
+            CR.creature.sprite.body.acceleration.x = 0;
+            
+            CR.player.sprite.body.velocity.x = 0;
+            CR.player.sprite.body.velocity.y = 0;
+            CR.player.sprite.body.acceleration.x = 0;
+
+            if (!CR.creature.anim.compare(['eat', 3, true])) {
+                CR.creature.sprite.animations.stop(null, true);
+                CR.creature.sprite.animations.play('eat', 3, true);
+                CR.creature.anim = ['eat', 3, true];
+            }
+
+            if (!CR.player.anim.compare(['eaten', 1, false, true])) {
+                CR.player.sprite.animations.stop(null, true);
+                CR.player.sprite.animations.play('eaten', 1, false, true);
+                CR.player.anim = ['eaten', 1, false, true];
+            }
+
+            if (!CR.player.sprite.visible) {
+                arguments[0]['break'] = true;
+                CR.game.camera.follow(CR.creature.sprite);
+            }
+        }, undefined, undefined, undefined, false);
+    },
+    catchCreature: function ()
+    {
+        CR.trap.body.gravity.y = -500;
+
+        var cage = CR.game.add.sprite(CR.creature.sprite.body.right - CR.creature.sprite.body.width*2, 0, 'cage');
+        cage.scale.setTo(0.7, 0.7);
+        cage.body.mass = 0.1;
+        cage.body.gravity.y = 200;
+        CR.collisions.push([CR.layer, cage, function() { console.log('end of game'); }]);
+
+        CR.ah.add(function(cage) {
+            console.log('catch the guy');
+            CR.game.camera.follow(CR.creature.sprite);
+
+            CR.creature.sprite.body.velocity.x = 0;
+            CR.creature.sprite.body.velocity.y = 0;
+            CR.creature.sprite.body.angularVelocity = 0;
+            CR.creature.sprite.body.gravity.y = 0;
+            CR.creature.sprite.body.immovable = true;
+            if (!CR.creature.anim.compare(['standing', 1, false])) {
+                CR.creature.sprite.animations.stop(null, true);
+                CR.creature.sprite.animations.play('standing', 1, false);
+                CR.creature.anim = ['standing', 1, false];
+            }           
+
+            removeControll();
+            CR.player.sprite.body.acceleration.x = 0;
+            CR.player.sprite.body.velocity.x = 0;
+            CR.player.sprite.body.speed = 0;
+            if (!CR.player.anim.compare(['standing', 1, false])) {
+                CR.player.sprite.animations.stop(null, true);
+                CR.player.sprite.animations.play('standing', 1, false);
+                CR.player.anim = ['standing', 1, false];
+            }
+
+            if (!cage.body.blocked.down) {
+                console.log('end of game');
+            }
+        }, [cage], undefined, undefined, false);
+    },
+    grabFant: function (figureSprite, fantSprite)
+    {
+        console.log('fant');
+        fantSprite.kill();
+        var figure = CR.Figures.getFigureBySprite(figureSprite);
+        if (fantSprite.key === "spinach") {
+            figure.spinach = figure.spinach + 1 || 1;
+        } else if (fantSprite.key === "granade") {
+            figure.granade = figure.granade + 1 || 1;
+        } else if (fantSprite.key === "bomb") {
+            figure.bomb = figure.bomb + 1 || 1;
+        }
+    },
+    swip: function (figure)
+    {
+        CR.ah.add(function(figure) {
+            console.log('swip');
+            removeControll();
+            if (figure.sprite.body.blocked.down) {
+                figure.sprite.kill();
+                arguments[1]['break'] = true;
+            }
+        }, [figure], undefined, undefined, false);
+    },
+    sink: function (figure)
+    {
+        CR.ah.add(function(figure) {
+            console.log('sink');
+            var velocity = 10;
+            if (figure.sprite.key == "creature") {
+                velocity = 22;
+            }
+            figure.sprite.animations.stop(null, true);
+            figure.sprite.body.velocity.x = velocity;
+            figure.sprite.body.velocity.y = -10;
+            figure.sprite.body.angularAcceleration = -800;
+            if (figure.sprite.body.rotation > -100 && figure.sprite.body.rotation < -80) {
+                arguments[1]['break'] = true;
+                figure.sprite.body.angularAcceleration = 0;
+                figure.sprite.body.angularVelocity = 0;
+                figure.sprite.body.acceleration.y = 0;
+                figure.sprite.body.acceleration.x = 0;
+                figure.sprite.body.velocity.y = -50;
+                figure.sprite.body.velocity.x = velocity / 2;
+                figure.sprite.body.gravity.y = 100;
+                figure.sprite.animations.play('tar');
+                CR.logic.swip(figure);
+            }
+        }, [figure], undefined, undefined, false);
+    },
+    checkSink: function (figure)
+    {
+        console.log('checkSink');
+        var tiles = CR.layer.getTiles(figure.sprite.body.x, figure.sprite.body.y, figure.sprite.body.width, CR.game.height, false),
+            factor = 2.3;
+        if (tiles.length === 0) return false;
+        if (figure.sprite.key == "creature") {
+            factor = 1.8;
+        }
+        if (tiles[Math.round(tiles.length/factor)].tile.index === 7 || tiles[Math.round(tiles.length/factor)].tile.index === 13) {
+            CR.logic.sink(figure);
+            return true;
+        }
+        return false;
+    },
+    wall: function (figure)
+    {
+        CR.ah.add(function(figure) {
+            if (typeof figure === 'undefined') {
+                figure = CR.player;
+            }
+            if (figure.sprite.body.blocked.right === true) {
+                console.log('wall');    
+                figure.sprite.animations.stop(null, true);
+                figure.sprite.body.velocity.x = 0;
+                figure.anim = ['stop', 0, true];
+            }
+        }, [figure], undefined, undefined, true);
+    }
+};
 
 function preload() {
-    CR.game.load.tilemap('map', 'assets/maps/creature.json', null, Phaser.Tilemap.TILED_JSON);
-    CR.game.load.image('tiles', 'assets/maps/creatureMap.png');
+    CR.game.load.tilemap('map', 'assets/maps/creature3.json', null, Phaser.Tilemap.TILED_JSON);
+    CR.game.load.image('tiles3', 'assets/maps/creatureMap3.png');
+
     CR.game.load.image('bomb', 'assets/images/bomb.png');
     CR.game.load.image('cage', 'assets/images/cage.png');
     CR.game.load.image('granade', 'assets/images/granade.png');
     CR.game.load.image('line', 'assets/images/line.png');
     CR.game.load.image('smoke', 'assets/images/smoke.png');
+    CR.game.load.image('spinach', 'assets/images/spinach.png');
     CR.game.load.image('thunder', 'assets/images/thunder.png');
-    CR.game.load.spritesheet('creature', 'assets/sprites/creature.png', 37, 45, 18);
-    CR.game.load.spritesheet('player', 'assets/sprites/player.png', 58, 96, 5);
+    CR.game.load.image('trap', 'assets/images/trap.png');
+
+    CR.game.load.atlasXML('creature', 'assets/sprites/creature.png', 'assets/sprites/creature.xml');
+    CR.game.load.atlasXML('player', 'assets/sprites/player.png', 'assets/sprites/player.xml');
 }
 
 function create() {
     /*map settings*/
     CR.map = CR.game.add.tilemap('map');
-    CR.map.addTilesetImage('creature', 'tiles');
+    CR.map.addTilesetImage('creature', 'tiles3');
     CR.layer = CR.map.createLayer(0);
     // CR.layer.fixedToCamera = true;
     // CR.layer.debug = true;
@@ -167,62 +599,173 @@ function create() {
     CR.map.setCollisionByIndex(6);
     CR.map.setCollisionByIndex(8);
 
-    CR.game.add.sprite(100, 250, 'bomb');
-    CR.game.add.sprite(120, 250, 'cage');
-    CR.game.add.sprite(140, 250, 'granade');
-    CR.game.add.sprite(160, 250, 'line');
-    CR.game.add.sprite(180, 250, 'smoke');
-    CR.game.add.sprite(200, 250, 'thunder');
+    /*images*/
+    // CR.game.add.sprite(100, 250, 'bomb');
+    
+    // CR.game.add.sprite(160, 250, 'line');
+    // CR.game.add.sprite(180, 250, 'smoke');
 
     /*creature*/
-    CR.creature = CR.game.add.sprite(100, 50, 'creature');
-    CR.creature.body.collideWorldBounds = true;
-    CR.creature.body.setSize(22, 45, 6, 0);
-    // CR.creature.anchor.setTo(0.5, 0.5);
-    // CR.creature.bounce.y = 0.4;
-    CR.creature.animations.add('run');
-    CR.creature.animations.play('run', 30, true);
+    var creature = {};
+    creature.w = 56;
+    creature.h = 200;
+    creature.scale = 0.5;
+    creature.bounce = 0;
+    creature.acceleration = 300;
+    creature.initialPoint = new Phaser.Point(140, 600);
+    /*initial settings*/
+    CR.creature.sprite = CR.game.add.sprite(creature.initialPoint.x, creature.initialPoint.y, 'creature');
+    CR.creature.sprite.anchor.setTo(0.5, 0.5);
+    CR.creature.sprite.body.setSize(creature.w, creature.h, 1, 0);
+    CR.creature.sprite.body.collideWorldBounds = true;
+    CR.creature.sprite.body.bounce.y = creature.bounce;
+    CR.creature.sprite.body.gravity.y = creature.acceleration;
+    CR.creature.sprite.scale.setTo(creature.scale, creature.scale);
+    /*movements*/
+    CR.creature.sprite.animations.add('tar', Phaser.Animation.generateFrameNames('tar', 0, 0, '', 2), 1, false);
+    CR.creature.sprite.animations.add('standing', Phaser.Animation.generateFrameNames('standing', 0, 0, '', 2), 0, false);
+    CR.creature.sprite.animations.add('run', Phaser.Animation.generateFrameNames('run', 0, 2, '', 2), 3, true);
+    CR.creature.sprite.animations.add('eat', Phaser.Animation.generateFrameNames('eat', 0, 2, '', 2), 3, true);
+    CR.creature.sprite.animations.add('granade', Phaser.Animation.generateFrameNames('granade', 0, 1, '', 2), 2, true);
+    CR.creature.sprite.animations.add('thunder', Phaser.Animation.generateFrameNames('thunder', 0, 1, '', 2), 2, true);
 
     /*player*/
-    CR.player = CR.game.add.sprite(240, 50, 'player');
-    CR.player.body.collideWorldBounds = true;
-    CR.player.body.setSize(38, 96, 6, 0);
-    CR.player.scale.setTo(0.6379, 0.46875);
-    // CR.player.anchor.setTo(0.5, 0.5);
-    // CR.player.bounce.y = 0.4;
-    CR.player.animations.add('run');
-    CR.player.animations.play('run', 10, true);
+    var player = {};
+    player.w = 85;
+    player.h = 118;
+    player.scale = 0.5;
+    player.bounce = 0;
+    player.acceleration = 300;
+    player.initialPoint = new Phaser.Point(400, 600);
+    /*initial settings*/
+    CR.player.sprite = CR.game.add.sprite(player.initialPoint.x, player.initialPoint.y, 'player');
+    CR.player.sprite.anchor.setTo(0.5, 0.5);
+    CR.player.sprite.body.setSize(player.w, player.h, 0, 0);
+    CR.player.sprite.body.collideWorldBounds = true;
+    CR.player.sprite.body.bounce.y = player.bounce;
+    CR.player.sprite.body.gravity.y = player.acceleration;
+    CR.player.sprite.scale.setTo(player.scale, player.scale);
+    /*movements*/
+    CR.player.sprite.animations.add('tar', Phaser.Animation.generateFrameNames('tar', 0, 0, '', 2), 1, false);
+    CR.player.sprite.animations.add('standing', Phaser.Animation.generateFrameNames('standing', 0, 0, '', 2), 0, false);
+    CR.player.sprite.animations.add('granade', Phaser.Animation.generateFrameNames('granade', 0, 0, '', 2), 0, false);
+    CR.player.sprite.animations.add('run', Phaser.Animation.generateFrameNames('run', 0, 2, '', 2), 3, true);
+    CR.player.sprite.animations.add('eaten', Phaser.Animation.generateFrameNames('eaten', 0, 2, '', 2), 3, true);
+
+    /*controll*/
+    returnControll();
 
     /*game settings*/
-    CR.game.stage.backgroundColor = '#787878';
-    CR.game.camera.follow(CR.player);
+    CR.game.stage.backgroundColor = '#fff';
+    CR.game.camera.follow(CR.player.sprite);
     // CR.game.camera.deadzone = new Phaser.Rectangle(160, 160, layer.renderWidth-320, layer.renderHeight-320);
+    CR.game.input.maxPointers = 1;
+    CR.game.stage.scale.maxWidth = 1000;
+    CR.game.stage.scale.maxHeight = 600;
+    if (CR.game.device.desktop)
+    {
+        CR.game.stage.scaleMode = Phaser.StageScaleMode.SHOW_ALL;
+        // CR.game.stage.disableVisibilityChange = true;
+        // CR.game.stage.scale.forceLandscape = true;
+        // CR.game.stage.scale.pageAlignHorizontally = true;
+        CR.game.stage.scale.setScreenSize(true);
+    }
+    else
+    {
+        CR.game.stage.scaleMode = Phaser.StageScaleMode.SHOW_ALL;
+        // CR.game.stage.disableVisibilityChange = true;
+        // CR.game.stage.scale.forceLandscape = true;
+        // CR.game.stage.scale.pageAlignHorizontally = true;
+        CR.game.stage.scale.setScreenSize(true);
+    }
+
+    CR.logic.run(undefined, CR.creature, 55, undefined, true);
+    CR.logic.run(undefined, CR.player, 45, undefined, true);
+    CR.logic.wall(CR.creature);
+    CR.logic.wall(CR.player);
+
+    CR.spinaches = CR.game.add.group();
+    for (var i = 0; i < 20; i+=2)
+    {
+        var spinach = CR.spinaches.create(i * 80, 620, 'spinach');
+        spinach.scale.setTo(0.5, 0.5);
+        spinach.body.immovable = true;
+    }
+    CR.granades = CR.game.add.group();
+    for (var i = 0; i < 20; i+=3)
+    {
+        var granade = CR.granades.create(i * 20, 620, 'granade');
+        granade.scale.setTo(0.5, 0.5);
+        granade.body.immovable = true;
+    }
+    CR.bombs = CR.game.add.group();
+    for (var i = 0; i < 20; i+=5)
+    {
+        var bomb = CR.bombs.create(i * 50, 620, 'bomb');
+        bomb.scale.setTo(0.5, 0.5);
+        bomb.body.immovable = true;
+    }
+
+    CR.trap = CR.game.add.sprite(700, 600, 'trap');
+    CR.trap.scale.setTo(0.5, 0.5);
+
 }
 
-function update() {
-    CR.game.physics.collide(CR.player, CR.layer);
-    CR.game.physics.collide(CR.creature, CR.layer);
-    CR.game.physics.collide(CR.player, CR.creature);
-    /*creature*/
-    CR.creature.body.acceleration.y = 300;
-    /*player*/
-    CR.player.body.acceleration.y = 300;
+function removeControll () {
+    CR.game.input.keyboard.addKey(Phaser.Keyboard.G).onDown.removeAll();
+    CR.game.input.keyboard.addKey(Phaser.Keyboard.B).onDown.removeAll();
+    CR.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT).onDown.removeAll();
+    CR.game.input.keyboard.addKey(Phaser.Keyboard.UP).onDown.removeAll();
+    $$('#game').swipeLeft(function(){});
+    $$('#game').doubleTap(function(){});
+    $$('#game').swipeRight(function(){});
+    $$('#game').swipeUp(function(){});
+}
+function returnControll () {
+    CR.game.input.keyboard.addKey(Phaser.Keyboard.G).onDown.add(CR.logic.granadeCreature, this);
+    CR.game.input.keyboard.addKey(Phaser.Keyboard.B).onDown.add(CR.logic.bombCreature, this);
+    CR.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT).onDown.add(CR.logic.speedup, this);
+    CR.game.input.keyboard.addKey(Phaser.Keyboard.UP).onDown.add(CR.logic.jump, this);
 
-    runForest(CR.creature, CR.player);
+    $$('#game').swipeLeft(CR.logic.granadeCreature);
+    $$('#game').doubleTap(CR.logic.bombCreature);
+    $$('#game').swipeRight(CR.logic.speedup);
+    $$('#game').swipeUp(CR.logic.jump);
+}
+
+function update() {    
+    CR.player.sinking = CR.player.sinking || false;
+    if (!CR.player.sinking) {
+        CR.player.sinking = CR.logic.checkSink(CR.player);
+    }
+
+    CR.creature.sinking = CR.creature.sinking || false;
+    if (!CR.creature.sinking) {
+        CR.creature.sinking = CR.logic.checkSink(CR.creature);
+    }
+
+    CR.game.physics.collide(CR.player.sprite, CR.layer);
+    CR.game.physics.collide(CR.creature.sprite, CR.layer);
+    CR.game.physics.collide(CR.player.sprite, CR.creature.sprite, CR.logic.eatPlayer, null, this);
+    CR.game.physics.collide(CR.player.sprite, CR.trap, CR.logic.catchCreature, null, this);
+    CR.game.physics.overlap(CR.player.sprite, CR.spinaches, CR.logic.grabFant, null, this);
+    CR.game.physics.overlap(CR.player.sprite, CR.granades, CR.logic.grabFant, null, this);
+    CR.game.physics.overlap(CR.player.sprite, CR.bombs, CR.logic.grabFant, null, this);
+    for (var i = 0; i < CR.collisions.length; i++) {
+        CR.game.physics.collide(CR.collisions[i][0], CR.collisions[i][1], CR.collisions[i][2], null, this);
+    };
+    CR.ah.run();
+
+    CR.ah.clean();
+
 }
 
 function render() {
     if (debug) {
-        // CR.game.debug.renderText("DEBUG", 100, 100);
-        CR.game.debug.renderSpriteBody(CR.player);
-        CR.game.debug.renderSpriteBounds(CR.player);
-        CR.game.debug.renderSpriteBody(CR.creature);
-        CR.game.debug.renderSpriteBounds(CR.creature);
+        CR.game.debug.renderSpriteBody(CR.player.sprite);
+        CR.game.debug.renderSpriteBounds(CR.player.sprite);
+        CR.game.debug.renderSpriteBody(CR.creature.sprite);
+        CR.game.debug.renderSpriteBounds(CR.creature.sprite);
+        CR.game.debug.renderText(debugText, 10, 10, 'rgb(0,0,0)');
     }
-}
-
-function runForest(spy, forest)
-{
-    spy.body.velocity.x = 35;
-    forest.body.velocity.x = 25;
 }
