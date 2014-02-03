@@ -238,7 +238,9 @@ CR.game = new Phaser.Game(1000, 600, Phaser.CANVAS, 'game', { preload: preload, 
 CR.ah = new CR.ActionHandler();
 CR.player = {
     anim: [],
-    spinach: 0,
+    spinach: 1,
+    granade: 1,
+    bomb: 1,
     acceleration: 300
 };
 CR.creature = {
@@ -290,6 +292,8 @@ CR.logic = {
     },
     speedup: function (key)
     {
+        if (CR.player.spinach === 0 || typeof(CR.player.spinach) === 'undefined') return;
+        else CR.player.spinach--;
         CR.ah.add(function() {
             console.log('speed');
             figure = CR.player;
@@ -331,6 +335,8 @@ CR.logic = {
     },
     granadeCreature: function (key)
     {
+        if (CR.player.granade === 0 || typeof(CR.player.granade) === 'undefined') return;
+        else CR.player.granade--;
         var x = CR.player.sprite.body.right,//CR.player.sprite.body.right + CR.player.sprite.body.halfHeight,
             y = CR.creature.sprite.body.right + 2 * CR.player.sprite.body.halfHeight,// - CR.creature.sprite.body.halfWidth,
             z = x - y,
@@ -369,7 +375,8 @@ CR.logic = {
     },
     bombCreature: function (key, creature, player)
     {
-        log("bomb", true);
+        if (CR.player.bomb === 0 || typeof(CR.player.bomb) === 'undefined') return;
+        else CR.player.bomb--;
 
         var thunder = CR.game.add.sprite(CR.creature.sprite.body.right - CR.creature.sprite.body.width , 0, 'thunder');
         thunder.body.mass = 0.1;
@@ -709,6 +716,8 @@ function create() {
     CR.trap = CR.game.add.sprite(700, 600, 'trap');
     CR.trap.scale.setTo(0.5, 0.5);
 
+    CR.gameInfo = CR.game.add.text(16, 16, 'Granades: 0 | Thunders: 0 | Spinach: 0', { font: '600 16pt Arial' });
+    console.log(CR.gameInfo);
 }
 
 function removeControll () {
@@ -754,8 +763,9 @@ function update() {
     for (var i = 0; i < CR.collisions.length; i++) {
         CR.game.physics.collide(CR.collisions[i][0], CR.collisions[i][1], CR.collisions[i][2], null, this);
     };
+    CR.gameInfo.position = CR.layer;
+    updateGameInfo(CR.player);
     CR.ah.run();
-
     CR.ah.clean();
 
 }
@@ -768,4 +778,8 @@ function render() {
         CR.game.debug.renderSpriteBounds(CR.creature.sprite);
         CR.game.debug.renderText(debugText, 10, 10, 'rgb(0,0,0)');
     }
+}
+
+function updateGameInfo(figure) {
+    CR.gameInfo.content = 'Granades: '+ figure.granade +' | Thunders: '+ figure.bomb +' | Spinach: '+ figure.spinach;
 }
