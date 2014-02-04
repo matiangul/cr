@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"gam",
+				"gameInfo"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
 				"kill",
 				"killCallback"
 			],
@@ -54,10 +62,6 @@
 			[
 				"f",
 				"factories"
-			],
-			[
-				"fun",
-				"function"
 			],
 			[
 				"acto",
@@ -163,7 +167,7 @@
 			"file": "app/scripts/main.js",
 			"settings":
 			{
-				"buffer_size": 24830,
+				"buffer_size": 32413,
 				"line_ending": "Windows"
 			}
 		},
@@ -184,10 +188,18 @@
 			}
 		},
 		{
-			"file": "app/assets/sprites/creature.xml",
+			"file": "app/assets/sprites/player.xml",
 			"settings":
 			{
-				"buffer_size": 1735,
+				"buffer_size": 1331,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Software/wamp/www/first-phaser-game/part9.html",
+			"settings":
+			{
+				"buffer_size": 4025,
 				"line_ending": "Windows"
 			}
 		}
@@ -195,7 +207,7 @@
 	"build_system": "Packages/User/builds/gpp.sublime-build",
 	"command_palette":
 	{
-		"height": 150.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
@@ -344,9 +356,23 @@
 	},
 	"file_history":
 	[
-		"/C/Software/wamp/www/cr/app/assets/sprites/player.xml",
-		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/multiple anims.js",
+		"/C/Software/wamp/bin/mysql/mysql5.6.12/data/yacms/app_data.frm",
+		"/C/Software/wamp/bin/mysql/mysql5.6.12/data/yacms/app_data.ibd",
+		"/C/Windows/System32/Drivers/etc/hosts",
+		"/C/Software/wamp/logs/mysql.log",
+		"/C/Software/wamp/www/yacms/vendor/vrana/notorm/tests/software.sql",
+		"/C/Software/wamp/bin/mysql/mysql5.6.12/my.ini",
+		"/C/Software/wamp/apps/phpmyadmin4.0.4/config.inc.php",
+		"/C/Software/wamp/bin/mysql/mysql5.6.12/bin/mysql_config.pl",
+		"/C/Software/wamp/bin/mysql/mysql5.6.12/wampserver.conf",
+		"/C/Software/wamp/bin/mysql/mysql5.6.12/my-default.ini",
+		"/C/Software/wamp/www/first-phaser-game/part9.html",
 		"/C/Software/wamp/www/cr/app/assets/sprites/creature.xml",
+		"/C/Software/wamp/www/cr/app/assets/sprites/player.xml",
+		"/C/Software/wamp/www/cr/app/styles/main.css",
+		"/C/zpanel/configs",
+		"/C/Software/wamp/www/cr/Gruntfile.js",
+		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/multiple anims.js",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/assets/sprites/seacreatures_json.json",
 		"/C/Software/wamp/www/cr/app/assets/sprites/player.json",
 		"/C/Software/wamp/www/cr/app/assets/sprites/creature.json",
@@ -356,11 +382,9 @@
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/sprite sheet.js",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/assets/sprites/running_bot.json",
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/animation/change texture on click.js",
-		"/C/Windows/System32/Drivers/etc/hosts",
 		"/C/Software/wamp/www/novum/support.txt",
 		"/C/Software/wamp/www/cr/dist/index.html",
 		"/C/Software/wamp/www/cr/dist/scripts/b12903f4.script.js",
-		"/C/Software/wamp/www/cr/Gruntfile.js",
 		"/C/Software/wamp/www/cr/app/scripts/quo.js",
 		"/C/Software/wamp/www/cr/dist/scripts/8266c86a.vendors.js",
 		"/C/Software/wamp/www/cr/dist/scripts/fd12a651.vendors.js",
@@ -387,12 +411,10 @@
 		"/C/Software/wamp/www/cr/app/vendors/phaser/examples/assets/tiles/sci-fi-tiles.png",
 		"/C/Software/wamp/www/cr/app/index.html",
 		"/C/Software/wamp/www/phaser/resources/Project Templates/Basic/index.html",
-		"/C/Software/wamp/www/first-phaser-game/part9.html",
 		"/C/Software/wamp/www/phaser/examples/tilemaps/mario.js",
 		"/C/Software/wamp/www/phaser/examples/tilemaps/mapcollide.js",
 		"/C/Software/wamp/www/cr/update.sh",
 		"/C/Software/wamp/www/cr/.gitmodules",
-		"/C/Software/wamp/www/cr/app/styles/main.css",
 		"/C/Software/wamp/www/cr/app/scripts/namespaces.js",
 		"/C/Software/wamp/www/cr/app/scripts/factories.js",
 		"/C/Software/wamp/www/cr/.editorconfig",
@@ -461,17 +483,7 @@
 		"/G/C++/oesk.cpp",
 		"/F/Documents/Polibuda/Semestr_3/Optymalizacja Kombinatoryczna/Projekt/OK/main.cpp",
 		"/F/Documents/Polibuda/Semestr_3/Optymalizacja Kombinatoryczna/Projekt/OK/debug.cpp",
-		"/G/C++/main.cpp",
-		"/G/C++/1000.cpp",
-		"/G/C++/1002.dat",
-		"/G/C++/1002.cpp",
-		"/C/Software/wamp/www/yatm/structure.md",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/builds/gpp.sublime-build",
-		"/G/C++/1001.dat",
-		"/G/C++/1001.cpp",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/User/Gist.sublime-settings",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/AdvancedNewFile/Default (Windows).sublime-keymap",
-		"/C/Users/Mateusz/AppData/Roaming/Sublime Text 2/Packages/AdvancedNewFile/AdvancedNewFile.sublime-settings"
+		"/G/C++/main.cpp"
 	],
 	"find":
 	{
@@ -495,6 +507,83 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"cantina.p",
+			"cantina.play",
+			"CR.audio",
+			"CR.audio.thunder",
+			"CR.audio.sink",
+			"CR.audio.granade",
+			"CR.audio.eat",
+			"add",
+			"add:",
+			"timeout",
+			"eat",
+			"play:",
+			"audio",
+			"removeControll",
+			"Controll",
+			"speedup",
+			"console.log(",
+			"followPlayer",
+			"CR.player",
+			"CR.logic.run(",
+			"CR.ah",
+			"ActionHa",
+			"updateG",
+			"speedup",
+			"granadeCreature",
+			"key",
+			"figure.granade",
+			"spinach",
+			"Granades: ",
+			"getFigureBySprite",
+			"grabFant",
+			"CR.gameInfo",
+			"class Text",
+			"Phaser.Text",
+			"CR.gameInfo",
+			"scoreText",
+			"tex",
+			"text",
+			"scoreTex",
+			"Phaser.Text",
+			"Text",
+			"StageScaleMode",
+			"Stage",
+			"granade",
+			"standing",
+			"trap",
+			"game",
+			"standing",
+			"catchCreature",
+			"cage",
+			"CR.spinaches",
+			"trap",
+			"removeControll",
+			"play(",
+			"speed",
+			"console.log(",
+			"removeControll",
+			"mass",
+			"gravity",
+			"checkSink",
+			"sprite.body.velocity.x",
+			"bombCreature",
+			"removeControll",
+			"bombCreature",
+			"wall",
+			"thunder",
+			"CR.creature.anim",
+			"logic.stop",
+			"stop",
+			"pause",
+			"bombC",
+			"debug =",
+			"bombCreature",
+			"class Signal",
+			"Signal",
+			"onDown",
+			"CR.controll",
 			"eat",
 			"console.log",
 			"checkSink",
@@ -545,84 +634,7 @@
 			"eatPlayer",
 			"play:",
 			"eatPlayer",
-			"collideSpriteVsSprite",
-			"collide",
-			"eatPlayer",
-			"playerSprite",
-			"spinach",
-			"scale.",
-			"getFigureBySprite",
-			"grabFant",
-			"collectFant",
-			"setFrame",
-			"resetFrame",
-			"Arcade.Body",
-			"class Body",
-			"currentFrame =",
-			"currentFrame",
-			"currentFrame :",
-			"resetFrame",
-			"reset",
-			"resetFrame",
-			"animation",
-			"stop():",
-			"stop:",
-			"immovable",
-			"maxY",
-			"maxVelocity",
-			"maxVelocity;",
-			"maxVelocity:",
-			"maxVelocity :",
-			"maxVelo",
-			"getTiles",
-			"55",
-			"quadtree",
-			"QuadTree",
-			"tile",
-			".Debug",
-			"Tile",
-			"CR.jump",
-			"touching",
-			"separateTile",
-			"collide",
-			"separateTiles",
-			"collideSpriteVsTilemapLayer",
-			"overlap",
-			"Phaser.Physics.",
-			"Phaser.Physics",
-			"Phaser.Physics.PhysicsManager",
-			"PhysicsManager",
-			"physics",
-			"touching",
-			"this.game",
-			"run",
-			"CR.player",
-			"CR.creature",
-			"80",
-			".stop(",
-			"id",
-			"getTile",
-			"collide",
-			"checkWorldBounds",
-			"collideWorldBounds",
-			"collide",
-			"acceleration",
-			"add(",
-			"jump",
-			"stop:",
-			"spy",
-			"forest",
-			"stop: ",
-			"setFrame = ",
-			"Sprite",
-			"200",
-			"134",
-			"bounce",
-			"y",
-			"frameY",
-			"numeric",
-			"Sprite",
-			"sprite"
+			"collideSpriteVsSprite"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -630,6 +642,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"// console.log(",
 			"CR.player",
 			"CR.creature",
 			"creature",
@@ -675,8 +688,8 @@
 						"selection":
 						[
 							[
-								850,
-								850
+								418,
+								418
 							]
 						],
 						"settings":
@@ -696,15 +709,15 @@
 					"file": "app/scripts/main.js",
 					"settings":
 					{
-						"buffer_size": 24830,
+						"buffer_size": 32413,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20136,
-								20136
+								24250,
+								24250
 							]
 						],
 						"settings":
@@ -714,7 +727,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 9362.0,
+						"translation.y": 32.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -731,8 +744,8 @@
 						"selection":
 						[
 							[
-								346050,
-								346071
+								1032510,
+								1032510
 							]
 						],
 						"settings":
@@ -742,7 +755,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 226376.0,
+						"translation.y": 639157.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -759,8 +772,8 @@
 						"selection":
 						[
 							[
-								24829,
-								24829
+								54456,
+								54456
 							]
 						],
 						"settings":
@@ -770,25 +783,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 12716.0,
+						"translation.y": 26054.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "app/assets/sprites/creature.xml",
+					"file": "app/assets/sprites/player.xml",
 					"settings":
 					{
-						"buffer_size": 1735,
+						"buffer_size": 1331,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								397,
-								397
+								1083,
+								1092
 							]
 						],
 						"settings":
@@ -799,6 +812,34 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Software/wamp/www/first-phaser-game/part9.html",
+					"settings":
+					{
+						"buffer_size": 4025,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								870,
+								870
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 378.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -855,6 +896,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"playe",
+				"app/assets/sprites/player.xml"
+			],
+			[
+				"pla",
+				"app/assets/sprites/player.xml"
+			],
 			[
 				"main.js",
 				"app/scripts/main.js"

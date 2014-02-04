@@ -23,6 +23,25 @@ Array.prototype.compare = function (array) {
     return true;
 };
 
+Phaser.Stage.prototype.visibilityChange = function (event) {
+    if (this.disableVisibilityChange)
+    {
+        return;
+    }
+
+    if (event.type == 'pagehide' || event.type == 'blur' || document['hidden'] === true || document['webkitHidden'] === true)
+    {
+        this.game.paused = true;
+        console.log('global PAUSE');
+        CR.audio.pause();
+    }
+    else
+    {
+        this.game.paused = false;
+        CR.audio.resume();
+    }
+};
+
 Phaser.Tilemap.prototype.setCollisionByIndexAndFace = function (index, layer, recalculate, top, bottom, left, right) {
 
     if (typeof layer === 'undefined')
@@ -238,12 +257,14 @@ CR.game = new Phaser.Game(1000, 600, Phaser.CANVAS, 'game', { preload: preload, 
 CR.ah = new CR.ActionHandler();
 CR.player = {
     anim: [],
-    spinach: 1,
-    granade: 1,
-    bomb: 1,
+    moves: [],
+    spinach: 10,
+    granade: 10,
+    bomb: 10,
     acceleration: 300
 };
 CR.creature = {
+    moveToDo: undefined,
     anim: [],
     acceleration: 300
 };
@@ -263,17 +284,39 @@ CR.logic = {
     run: function (key, figure, speed, time, append)
     {
         CR.ah.add(function(figure, speed) {
-            console.log('run');
+            // console.log('run');
             if (!figure.anim.compare(['run', 10, true])) {
                 figure.sprite.animations.stop(null, true);
                 figure.sprite.animations.play('run', 10, true);
                 figure.anim = ['run', 10, true];
             }
             figure.sprite.body.gravity.y = figure.acceleration;
+            figure.sprite.body.acceleration.x = 0;
             figure.sprite.body.velocity.x = speed;
             figure.sprite.body.immovable = false;
             returnControll();
         }, [figure, speed], undefined, time, append);
+    },
+    followPlayer: function ()
+    {
+        if (typeof(CR.creature.moveToDo) === 'undefined' && CR.player.moves.length !== 0) {
+            CR.creature.moveToDo = CR.player.moves.shift();
+        }
+        var move = CR.creature.moveToDo,
+            creature = CR.creature.sprite.body;
+
+        if (typeof(move) !== 'undefined' && 
+                move.bottom >= creature.bottom - 2 && 
+                move.bottom <= creature.bottom + 2 && 
+                move.right >= creature.right - 2 && 
+                move.right <= creature.right + 2) {
+            if (move.acceleration > 0) {
+                CR.logic.speedup(undefined, CR.creature, 1000);
+            }
+            CR.logic.jump(undefined, CR.creature);
+        } else if (typeof(move) !== 'undefined' && move.right < creature.right+2) {
+            CR.creature.moveToDo = undefined;
+        }
     },
     stop: function (key, figure, time, append)
     {
@@ -290,13 +333,14 @@ CR.logic = {
             figure.anim = ['stop', 0, true];
         }, [figure], undefined, time, append);
     },
-    speedup: function (key)
+    speedup: function (key, figure, time)
     {
         if (CR.player.spinach === 0 || typeof(CR.player.spinach) === 'undefined') return;
         else CR.player.spinach--;
-        CR.ah.add(function() {
+        if (typeof(figure) === 'undefined') figure = CR.player;
+        if (typeof(time) === 'undefined') time = 1500;
+        CR.ah.add(function(figure, time) {
             console.log('speed');
-            figure = CR.player;
             if (!figure.sprite.body.touching.right){
                 if (!figure.anim.compare(['run', 40, true])) {
                     figure.sprite.animations.stop('run', false);
@@ -305,17 +349,25 @@ CR.logic = {
                 }
                 figure.sprite.body.acceleration.x = 100;
             }
-        }, undefined, undefined, Date.now() + 1500, false);
+        }, [figure, time], undefined, Date.now() + time, false);
     },
     jump: function (key, figure, time, append)
     {
+        if (typeof figure === 'undefined') {
+            figure = CR.player;
+        }
+        if (figure.sprite.key === "player") {
+            CR.player.moves.push({
+                'bottom': figure.sprite.body.bottom,
+                'right': figure.sprite.body.right,
+                'acceleration': figure.sprite.body.acceleration.x, 
+                'action': 'jump'
+            });
+        }
         CR.ah.add(function(figure) {
-            console.log('jump');
-            if (typeof figure === 'undefined') {
-                figure = CR.player;
-            }
             var tiles = CR.layer.getTiles(CR.player.sprite.body.x, CR.player.sprite.body.y, CR.player.sprite.body.width, CR.game.height, true);
             if (typeof(tiles[0]) !== 'undefined' && figure.sprite.body.bottom + 10 > tiles[0].y) {
+                CR.logic.speedup(undefined, figure, 300);
                 figure.sprite.body.velocity.y = -200;
             }
         }, [figure], undefined, -1, true);
@@ -324,6 +376,12 @@ CR.logic = {
     {
         CR.ah.add(function(granade) {
             console.log('hit granade');
+            var playSound = CR.audio.cantina.isPlaying;
+            if (playSound) {
+                CR.audio.cantina.pause();
+                CR.audio.granade.onEnd.addEventListener(function() { CR.audio.cantina.resume(); });
+                CR.audio.granade.play();
+            }
             CR.game.physics.collide(granade, CR.layer);
             if (!CR.creature.anim.compare(['granade', 10, true])) {
                 CR.creature.sprite.animations.stop(null, true);
@@ -384,7 +442,6 @@ CR.logic = {
         CR.collisions.push([CR.creature.sprite, thunder, function() { CR.logic.thunder(thunder); }]);
 
         CR.ah.add(function(thunder) {
-            console.log('bomb');
             CR.game.camera.follow(CR.creature.sprite);
 
             CR.creature.sprite.body.velocity.x = 0;
@@ -415,8 +472,14 @@ CR.logic = {
         }, [thunder], undefined, undefined, false);
     },
     thunder: function (thunder) {
-         returnControll();
-         CR.ah.add(function(thunder) {
+        var playSound = CR.audio.cantina.isPlaying;
+        if (playSound) {
+            CR.audio.cantina.pause(); 
+            CR.audio.thunder.onEnd.addEventListener(function() { CR.audio.cantina.resume(); });
+            CR.audio.thunder.play();
+        }
+        returnControll();
+        CR.ah.add(function(thunder) {
             console.log('thunder');
             thunder.kill();
             if (!CR.creature.anim.compare(['thunder', 10, true])) {
@@ -429,6 +492,12 @@ CR.logic = {
     },
     eatPlayer: function (sprite1, sprite2, time)
     {
+        var playSound = CR.audio.cantina.isPlaying;
+        if (playSound) {
+            CR.audio.cantina.pause();
+            CR.audio.eat.onEnd.addEventListener(function() { CR.audio.cantina.resume(); });
+            CR.audio.eat.play();
+        }
         CR.ah.add(function() {
             console.log('eat');
             CR.creature.sprite.body.velocity.x = 0;
@@ -512,9 +581,16 @@ CR.logic = {
     },
     swip: function (figure)
     {
+        var playSound = CR.audio.cantina.isPlaying;
+        if (playSound) {
+            CR.audio.cantina.pause();
+            CR.audio.sink.onEnd.addEventListener(function() { CR.audio.cantina.resume(); });
+            CR.audio.sink.play();
+        }
         CR.ah.add(function(figure) {
             console.log('swip');
-            removeControll();
+            if (figure.sprite.key === "plyer")
+                removeControll();
             if (figure.sprite.body.blocked.down) {
                 figure.sprite.kill();
                 arguments[1]['break'] = true;
@@ -524,7 +600,7 @@ CR.logic = {
     sink: function (figure)
     {
         CR.ah.add(function(figure) {
-            console.log('sink');
+            // console.log('sink');
             var velocity = 10;
             if (figure.sprite.key == "creature") {
                 velocity = 22;
@@ -549,16 +625,18 @@ CR.logic = {
     },
     checkSink: function (figure)
     {
-        console.log('checkSink');
-        var tiles = CR.layer.getTiles(figure.sprite.body.x, figure.sprite.body.y, figure.sprite.body.width, CR.game.height, false),
-            factor = 2.3;
-        if (tiles.length === 0) return false;
-        if (figure.sprite.key == "creature") {
-            factor = 1.8;
-        }
-        if (tiles[Math.round(tiles.length/factor)].tile.index === 7 || tiles[Math.round(tiles.length/factor)].tile.index === 13) {
-            CR.logic.sink(figure);
-            return true;
+        // console.log('checkSink');
+        if (typeof(figure.sprite)!=='undefined') {
+            var tiles = CR.layer.getTiles(figure.sprite.body.x, figure.sprite.body.y, figure.sprite.body.width, CR.game.height, false),
+                factor = 2.3;
+            if (tiles.length === 0) return false;
+            if (figure.sprite.key == "creature") {
+                factor = 1.8;
+            }
+            if (tiles[Math.round(tiles.length/factor)].tile.index === 7 || tiles[Math.round(tiles.length/factor)].tile.index === 13) {
+                CR.logic.sink(figure);
+                return true;
+            }
         }
         return false;
     },
@@ -579,6 +657,7 @@ CR.logic = {
 };
 
 function preload() {
+
     CR.game.load.tilemap('map', 'assets/maps/creature3.json', null, Phaser.Tilemap.TILED_JSON);
     CR.game.load.image('tiles3', 'assets/maps/creatureMap3.png');
 
@@ -591,11 +670,104 @@ function preload() {
     CR.game.load.image('thunder', 'assets/images/thunder.png');
     CR.game.load.image('trap', 'assets/images/trap.png');
 
+
     CR.game.load.atlasXML('creature', 'assets/sprites/creature.png', 'assets/sprites/creature.xml');
     CR.game.load.atlasXML('player', 'assets/sprites/player.png', 'assets/sprites/player.xml');
 }
 
 function create() {
+    var element = document.getElementById('audio');
+    var Audio = function(element, start, stop, loop) {
+        this._loop = loop || false;
+        this.isPlaying = false;
+        this._element = element;
+        this._lastTime = start;
+        this._start = start;
+        this._stop = stop;
+        var timeUpdate = function() {
+            if (this.isPlaying && this._element.currentTime - 0.2 <= this._stop && this._stop <= this._element.currentTime + 0.2) {
+                this.timeEnds();
+            }
+        };
+        this._element.addEventListener('timeupdate', timeUpdate.bind(this));
+        this.onEnd = {
+            listeners: [],
+            addEventListener: function(callback) {
+                this.listeners.push(callback);
+            },
+            dispatch: function() {
+                for (var i = 0; i < this.listeners.length; i++) {
+                    console.log(this.listeners[i]);
+                    this.listeners[i]();
+                }
+            }
+        };
+    };
+    Audio.prototype = {
+        play: function (reset, loop) {
+            console.log('play ?');
+            if (typeof(reset)==='undefined') reset = true;
+            if (typeof(loop)==='undefined') loop = this._loop;
+            this.isPlaying = true;
+            this._element.currentTime = this._lastTime;
+            if (reset) this._element.currentTime = this._start;
+            this._element.loop = loop;
+            this._element.play();
+        },
+        pause: function () {
+            console.log('pause ?');
+            var beenPlaying = this.isPlaying;
+            this.isPlaying = false;
+            this._element.pause();
+            this._lastTime = this._element.currentTime;
+
+            return beenPlaying;
+        },
+        resume: function() {
+            console.log('resume ?');
+            this.play(false);
+        },
+        timeEnds: function() {
+            console.log('timeEnds ?');
+            if (this._loop) this.play();
+            else {
+                this.pause();
+                this.onEnd.dispatch();
+            }
+        }
+    };
+    CR.audio = {};
+    CR.audio.justPaused = false;
+    CR.audio.pause = function () {
+        if (!CR.audio.justPaused) {
+            CR.audio.justPaused = true;
+            CR.audio.paused = {
+                'cantina': CR.audio.cantina.pause(),
+                'eat': CR.audio.eat.pause(),
+                'granade': CR.audio.granade.pause(),
+                'sink': CR.audio.sink.pause(),
+                'thunder': CR.audio.thunder.pause()
+            }
+        }
+    };
+    CR.audio.resume = function () {
+        if (CR.audio.justPaused) {
+            for (audio in CR.audio.paused) {
+                if (CR.audio.paused[audio] === true) {
+                    CR.audio[audio].resume();
+                }
+            }
+            CR.audio.justPaused = false;
+        }
+    };
+    CR.audio.cantina = new Audio(element, 0, 166, true);
+    CR.audio.eat = new Audio(element, 166, 169.9);
+    CR.audio.granade = new Audio(element, 169.9, 174.5);
+    CR.audio.sink = new Audio(element, 174.5, 176.5);
+    CR.audio.thunder = new Audio(element, 176.5, 180);
+
+    CR.audio.cantina.play();
+
     /*map settings*/
     CR.map = CR.game.add.tilemap('map');
     CR.map.addTilesetImage('creature', 'tiles3');
@@ -686,8 +858,8 @@ function create() {
         CR.game.stage.scale.setScreenSize(true);
     }
 
-    CR.logic.run(undefined, CR.creature, 55, undefined, true);
-    CR.logic.run(undefined, CR.player, 45, undefined, true);
+    CR.logic.run(undefined, CR.creature, 75, undefined, true);
+    CR.logic.run(undefined, CR.player, 65, undefined, true);
     CR.logic.wall(CR.creature);
     CR.logic.wall(CR.player);
 
@@ -717,7 +889,6 @@ function create() {
     CR.trap.scale.setTo(0.5, 0.5);
 
     CR.gameInfo = CR.game.add.text(16, 16, 'Granades: 0 | Thunders: 0 | Spinach: 0', { font: '600 16pt Arial' });
-    console.log(CR.gameInfo);
 }
 
 function removeControll () {
@@ -742,7 +913,8 @@ function returnControll () {
     $$('#game').swipeUp(CR.logic.jump);
 }
 
-function update() {    
+function update() {
+    
     CR.player.sinking = CR.player.sinking || false;
     if (!CR.player.sinking) {
         CR.player.sinking = CR.logic.checkSink(CR.player);
@@ -763,8 +935,10 @@ function update() {
     for (var i = 0; i < CR.collisions.length; i++) {
         CR.game.physics.collide(CR.collisions[i][0], CR.collisions[i][1], CR.collisions[i][2], null, this);
     };
-    CR.gameInfo.position = CR.layer;
+    if (typeof(CR.gameInfo) !== 'undefined')
+        CR.gameInfo.position = CR.layer;
     updateGameInfo(CR.player);
+    CR.logic.followPlayer();
     CR.ah.run();
     CR.ah.clean();
 
@@ -781,5 +955,6 @@ function render() {
 }
 
 function updateGameInfo(figure) {
-    CR.gameInfo.content = 'Granades: '+ figure.granade +' | Thunders: '+ figure.bomb +' | Spinach: '+ figure.spinach;
+    if (typeof(CR.gameInfo) !== 'undefined')
+        CR.gameInfo.content = 'Granades: '+ figure.granade +' | Thunders: '+ figure.bomb +' | Spinach: '+ figure.spinach;
 }
